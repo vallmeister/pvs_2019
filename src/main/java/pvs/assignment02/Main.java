@@ -3,6 +3,11 @@ package pvs.assignment02;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Main class for assignment 2.
+ *
+ * @author Christian
+ */
 public class Main {
   public static void main(String[] args) {
     Pair<Integer, Float> pair1 = new Pair<>(95, 2.5f);

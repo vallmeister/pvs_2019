@@ -3,6 +3,9 @@
  */
 package pvs;
 
+/**
+ * Standard App class.
+ */
 public class App {
     public String getGreeting() {
         return "Hello world.";

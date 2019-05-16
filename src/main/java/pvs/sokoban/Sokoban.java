@@ -2,6 +2,11 @@ package pvs.sokoban;
 
 import pvs.assignment02.Pair;
 
+/**
+ * Class for our sokoban game.
+ *
+ * @author Christian
+ */
 public class Sokoban {
   private final static int NORTH = 0;
   private final static int EAST = 1;
@@ -55,7 +60,7 @@ public class Sokoban {
   }
 
   public static boolean moveWest(char[][] pitch) {
-    return move(pitch,WEST);
+    return move(pitch, WEST);
   }
 
   private static boolean move(char[][] pitch, int direction) {

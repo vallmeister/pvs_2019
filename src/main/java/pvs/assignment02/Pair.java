@@ -2,6 +2,11 @@ package pvs.assignment02;
 
 import java.util.Objects;
 
+/**
+ * Class for tupel.
+ * @param <F> First element of the tupel.
+ * @param <S> Second element.
+ */
 public class Pair<F, S> implements Comparable<Pair<F, S>> {
   private F first;
   private S second;
@@ -28,8 +33,12 @@ public class Pair<F, S> implements Comparable<Pair<F, S>> {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Pair<?, ?> pair = (Pair<?, ?>) o;
     return Objects.equals(first, pair.first) &&
             Objects.equals(second, pair.second);
@@ -43,18 +52,18 @@ public class Pair<F, S> implements Comparable<Pair<F, S>> {
   @Override
   @SuppressWarnings("unchecked")
   public int compareTo(@SuppressWarnings("NullableProblems") Pair other) {
-    F this_first = this.first;
-    F other_first = (F) other.getFirst();
-    S this_second = this.second;
-    S other_second = (S) other.getSecond();
-    if (this_first.hashCode() > other_first.hashCode()) {
+    F thisFirst = this.first;
+    F otherFirst = (F) other.getFirst();
+    S thisSecond = this.second;
+    S otherSecond = (S) other.getSecond();
+    if (thisFirst.hashCode() > otherFirst.hashCode()) {
       return 1;
-    } else if (this_first.hashCode() < other_first.hashCode()) {
+    } else if (thisFirst.hashCode() < otherFirst.hashCode()) {
       return -1;
     } else
-      if (this_second.hashCode() > other_second.hashCode()) {
+      if (thisSecond.hashCode() > otherSecond.hashCode()) {
         return 1;
-      } else if (this_second.hashCode() < other_second.hashCode()) {
+      } else if (thisSecond.hashCode() < otherSecond.hashCode()) {
         return -1;
       } else {
         return 0;

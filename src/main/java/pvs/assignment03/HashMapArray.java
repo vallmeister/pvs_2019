@@ -3,9 +3,11 @@ package pvs.assignment03;
 import java.util.HashMap;
 
 /**
- * Assignment 3 exercise 1.
+ * Assignment 3 exercise 1. Array-class which uses a {@link HashMap}.
  *
  * @author Christian
+ *
+ * @param <V> Value of the array.
  */
 public class HashMapArray<V> {
   private int capacity;
