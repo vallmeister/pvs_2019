@@ -15,13 +15,30 @@ public class LogParser {
   public static void main(String[] args) {
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader("resources/build.log"))) {
       int lineNumber = 1;
-      Pattern warningPattern = Pattern.compile("Warning [\\d]* of [\\d]*:");
-      //Pattern filePattern = Pattern.compile("[.]* /[a-zA-Z]+[\.]*");
+      Pattern warningPattern = Pattern.compile("^Warning [\\d]* of [\\d]*:");
+      Pattern filePattern = Pattern.compile("[/[a-zA-Z_-]*]*\\.[a-z]*");
       String nextLine;
       while ((nextLine = bufferedReader.readLine()) != null) {
-        Matcher matcher = warningPattern.matcher(nextLine);
-        if (matcher.matches()) {
-          System.out.println(lineNumber + ": " + nextLine);
+        Matcher warningMatcher = warningPattern.matcher(nextLine);
+        if (warningMatcher.matches()) {
+          System.out.print(lineNumber + ": " + nextLine + " ");
+
+          PATH: while ((nextLine = bufferedReader.readLine()) != null) {
+            String[] nextLineSplitters = nextLine.split("\\s");
+
+            for (int i = 0; i < nextLineSplitters.length; ++i) {
+              Matcher fileMatcher = filePattern.matcher(nextLineSplitters[i]);
+              warningMatcher = warningPattern.matcher(nextLine);
+              if (fileMatcher.matches()) {
+                System.out.println(nextLineSplitters[i] + " " + nextLineSplitters[i + 2].replace(",", ""));
+                break PATH;
+              } else if (warningMatcher.matches()) {
+                break PATH;
+              }
+            }
+            lineNumber++;
+          }
+          lineNumber++;
         }
         lineNumber++;
       }
